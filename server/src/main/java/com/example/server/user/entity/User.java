@@ -1,8 +1,7 @@
 package com.example.server.user.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.server.group.entity.Group;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +20,8 @@ public class User {
     private String surname;
     private String phoneNumber;
     private String email;
+    private String password;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 }
