@@ -1,10 +1,9 @@
 package com.example.server.user.entity;
 
 import com.example.server.group.entity.Group;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -23,5 +22,8 @@ public class User {
     private String password;
     @ManyToOne
     @JoinColumn(name = "group_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
     private Group group;
 }

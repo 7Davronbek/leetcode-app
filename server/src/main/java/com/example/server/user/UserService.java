@@ -1,11 +1,13 @@
 package com.example.server.user;
 
+import com.example.server.rsql.SpecificationBuilder;
 import com.example.server.user.dto.UserCreateDto;
 import com.example.server.user.dto.UserResponseDto;
 import com.example.server.user.entity.User;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,10 +28,12 @@ public class UserService {
         return modelMapper.map(saved, UserResponseDto.class);
     }
 
-    public List<UserResponseDto> getAll() {
+    @Transactional
+    public List<UserResponseDto> getAll(String predicate) {
+        Specification<User> spec = SpecificationBuilder.build(predicate);
 
         return userRepository
-                .findAll()
+                .findAll(spec)
                 .stream()
                 .map(UserResponseDto::new)
                 .toList();

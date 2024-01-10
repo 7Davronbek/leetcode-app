@@ -26,10 +26,12 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserResponseDto>> getAll() {
-        List<UserResponseDto> users = userService.getAll();
+    public ResponseEntity<List<UserResponseDto>> getAll(@RequestParam(required = false) String predicate) {
+        List<UserResponseDto> users = userService.getAll(predicate);
 
         return ResponseEntity
                 .ok(users);
+
+//        1:35
     }
 }
