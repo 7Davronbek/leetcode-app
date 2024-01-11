@@ -1,16 +1,17 @@
 package com.example.server.user;
 
-import com.example.server.rsql.SpecificationBuilder;
+import com.example.server.common.rsql.SpecificationBuilder;
 import com.example.server.user.dto.UserCreateDto;
 import com.example.server.user.dto.UserResponseDto;
 import com.example.server.user.entity.User;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,13 +30,11 @@ public class UserService {
     }
 
     @Transactional
-    public List<UserResponseDto> getAll(String predicate) {
+    public Page<UserResponseDto> getAll(String predicate, Pageable pageable) {
         Specification<User> spec = SpecificationBuilder.build(predicate);
 
-        return userRepository
-                .findAll(spec)
-                .stream()
-                .map(UserResponseDto::new)
-                .toList();
+        Page<User> users = userRepository.findAll(spec, pageable);
+
+        return users.map(user -> modelMapper.map(user, UserResponseDto.class));
     }
 }

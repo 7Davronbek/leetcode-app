@@ -4,6 +4,8 @@ import com.example.server.user.dto.UserCreateDto;
 import com.example.server.user.dto.UserResponseDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +28,10 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserResponseDto>> getAll(@RequestParam(required = false) String predicate) {
-        List<UserResponseDto> users = userService.getAll(predicate);
+    public ResponseEntity<Page<UserResponseDto>> getAll(@RequestParam(required = false) String predicate, Pageable pageable) {
+        Page<UserResponseDto> users = userService.getAll(predicate, pageable);
 
         return ResponseEntity
                 .ok(users);
-
-//        1:35
     }
 }

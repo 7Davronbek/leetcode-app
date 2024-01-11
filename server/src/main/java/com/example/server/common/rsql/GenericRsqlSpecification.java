@@ -1,4 +1,4 @@
-package com.example.server.rsql;
+package com.example.server.common.rsql;
 
 import cz.jirutka.rsql.parser.ast.ComparisonOperator;
 import jakarta.persistence.criteria.CriteriaBuilder;
