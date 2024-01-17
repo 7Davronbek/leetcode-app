@@ -1,11 +1,20 @@
 import {Route, Routes} from "react-router-dom";
-import {Main} from "./page";
+import {ToastContainer} from "react-toastify";
+// @ts-ignore
+import {Main} from "@/page";
+// @ts-ignore
+import {ScrollToTop, Navbar} from "@/component"
 
 const App = () => {
     return (
-        <Routes>
-            <Route path="/" element={<Main />} />
-        </Routes>
+        <>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<Main/>}/>
+            </Routes>
+            <ToastContainer/>
+            <ScrollToTop/>
+        </>
     );
 };
 
