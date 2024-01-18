@@ -19,6 +19,8 @@ const PhoneVerifyPage = () => {
             phoneNumber: user.phoneNumber,
             email: user.email,
             dateOfBirth: user.birthDate
+        }, {
+            withCredentials: true
         }).then((res) => {
             console.log(res.headers)
             // const token = res.headers["Authorization"];
