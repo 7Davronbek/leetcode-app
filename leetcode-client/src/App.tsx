@@ -1,9 +1,8 @@
 import {Route, Routes} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
-// @ts-ignore
-import {Main} from "@/page";
-// @ts-ignore
-import {ScrollToTop, Navbar} from "@/component"
+
+import {Main, PhoneVerifyPage, RegisterPage} from "./page";
+import {Navbar, ScrollToTop} from "./component";
 
 const App = () => {
     return (
@@ -11,6 +10,8 @@ const App = () => {
             <Navbar />
             <Routes>
                 <Route path="/" element={<Main/>}/>
+                <Route path="/register" element={<RegisterPage/>}/>
+                <Route path="/phone-verify" element={<PhoneVerifyPage/>}/>
             </Routes>
             <ToastContainer/>
             <ScrollToTop/>

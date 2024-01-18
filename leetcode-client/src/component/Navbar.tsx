@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
     return (
@@ -7,8 +8,8 @@ const Navbar = () => {
                     <div className="col-12 d-flex align-items-center justify-content-between">
                         <h2 className="logo">LOGO</h2>
                         <div className="d-flex ms-auto">
-                            <button className="btn btn-outline-dark">Sign in</button>
-                            <button className="btn ms-3 btn-primary">Sign up </button>
+                            <Link to="/login" className="btn btn-outline-dark">Sign in</Link>
+                            <Link to="/register" className="btn ms-3 btn-primary">Sign up </Link>
                         </div>
                     </div>
                 </div>
